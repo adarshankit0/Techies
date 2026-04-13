@@ -24,8 +24,38 @@
 
           
           <div class="form__group">
-            <label for="topic">Enter a Topic</label>
-            <input type="text" name="topic" placeholder="e.g. Python" value="{{room.topic.name}}">
+            <label>Select Topic</label>
+
+            
+            <input 
+              type="text" 
+              id="topicSearch" 
+              placeholder="Search topic..." 
+              onkeyup="filterTopics()" 
+            />
+
+            
+            <select name="topic" id="topicSelect" onchange="toggleTopicInput()" required>
+              <option value="">-- Select Topic --</option>
+
+              {% for topic in topics %}
+                <option value="{{ topic.name }}">
+                  {% if topic.name == "Python" %}🐍{% elif topic.name == "JavaScript" %}⚡{% elif topic.name == "C++" %}💻{% else %}📘{% endif %}
+                  {{ topic.name }}
+                </option>
+              {% endfor %}
+
+              <option value="new">➕ Create New Topic</option>
+            </select>
+
+            
+            <div id="newTopicBox" style="display:none; margin-top:10px;">
+              <input 
+                type="text" 
+                name="new_topic" 
+                placeholder="Enter new topic..." 
+              />
+            </div>
           </div>
 
           
@@ -52,5 +82,31 @@
 
   </div>
 </main>
+
+
+<script>
+function toggleTopicInput() {
+    var select = document.getElementById("topicSelect");
+    var newTopicBox = document.getElementById("newTopicBox");
+
+    if (select.value === "new") {
+        newTopicBox.style.display = "block";
+    } else {
+        newTopicBox.style.display = "none";
+    }
+}
+
+
+function filterTopics() {
+    var input = document.getElementById("topicSearch").value.toLowerCase();
+    var select = document.getElementById("topicSelect");
+    var options = select.options;
+
+    for (var i = 0; i < options.length; i++) {
+        var txt = options[i].text.toLowerCase();
+        options[i].style.display = txt.includes(input) ? "" : "none";
+    }
+}
+</script>
 
 {% endblock %}
