@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="container">
+  <h2>Contact Us</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <textarea name="message" placeholder="Your Message"></textarea><br><br>
+    <button type="submit" class="btn btn--main">Send</button>
+  </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% for room in rooms %}
+
+<div class="roomListRoom modern-card">
+
+  
+  <div class="roomListRoom__header modern-header">
+    <a href="{% url 'user-profile' room.host.id %}" class="roomListRoom__author">
+      <div class="avatar avatar--small">
+        <img src="{{room.host.avatar.url}}" />
+      </div>
+      <span class="username">@{{room.host.username}}</span>
+    </a>
+
+    <div class="roomListRoom__actions">
+      <span>{{room.updated|timesince}} ago</span>
+    </div>
+  </div>
+
+  
+  <div class="roomListRoom__content modern-content">
+    <a href="{% url 'room' room.id %}">
+      {{room.name}}
+    </a>
+
+    <p class="room-desc">
+      {{room.description|truncatechars:80}}
+    </p>
+  </div>
+
+  
+  <div class="roomListRoom__meta modern-footer">
+    
+    <a href="{% url 'room' room.id %}" class="roomListRoom__joined">
+      👥 {{room.participants.count}} Joined
+    </a>
+
+    <p class="roomListRoom__topic modern-topic">
+      {{room.topic.name}}
+    </p>
+
+  </div>
+
+</div>
+
+{% endfor %}

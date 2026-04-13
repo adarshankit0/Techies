@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h2>Friend Requests</h2>
+
+{% for req in requests %}
+  <div>
+    <p>{{ req.sender.username }}</p>
+    <a href="{% url 'accept-friend' req.id %}">Accept</a>
+  </div>
+{% empty %}
+  <p>No requests</p>
+{% endfor %}
+
+<hr>
+
+<h2>Your Friends</h2>
+
+{% for friend in friends %}
+  <p>{{ friend.username }}</p>
+{% empty %}
+  <p>No friends yet</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div style="padding:40px; text-align:center;">
+
+  <h1 style="margin-bottom:30px;">🤖 AI Assistance</h1>
+
+  <div style="display:flex; gap:30px; justify-content:center; flex-wrap:wrap;">
+
+    
+    <a href="https://chat.openai.com" target="_blank" class="btn btn--main">
+      💬 Open ChatGPT
+    </a>
+
+    
+    <a href="https://gemini.google.com" target="_blank" class="btn btn--main">
+      🧠 Open Gemini
+    </a>
+
+    
+    <button onclick="startVoice()" class="btn btn--main">
+      🎤 Voice Assistant
+    </button>
+
+  </div>
+
+  
+  <div style="margin-top:40px;">
+    <input id="voiceText" type="text" placeholder="Your speech will appear here..." 
+           style="width:60%; padding:10px; border-radius:8px;">
+  </div>
+
+</div>
+
+<script>
+function startVoice() {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+  recognition.lang = "en-US";
+
+  recognition.onstart = function() {
+    alert("🎤 Listening... Speak now");
+  };
+
+  recognition.onresult = function(event) {
+    document.getElementById("voiceText").value = event.results[0][0].transcript;
+  };
+
+  recognition.start();
+}
+</script>
+
+{% endblock %}

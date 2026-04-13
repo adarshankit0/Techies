@@ -1,0 +1,151 @@
+{% load static %}
+
+<style>
+  .nav-btn {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 8px;
+    font-size: 13px;
+    text-decoration: none;
+    margin-left: 8px;
+  }
+
+  .nav-btn:hover {
+    background-color: #2980b9;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 15px;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<header class="header header--loggedIn">
+  <div class="container">
+
+    
+    <div class="nav-left">
+
+      
+      <a href="{% url 'home' %}" class="header__logo">
+        <img src="{% static 'images/logo.svg' %}" />
+        <h1>Techies</h1>
+      </a>
+
+      
+      <a href="{% url 'ai' %}" class="nav-btn">🤖 AI</a>
+      <a href="{% url 'posts' %}" class="nav-btn">📝 Posts</a>
+
+      
+      <div class="nav-links">
+  <a href="{% url 'about' %}">About</a>
+  <a href="{% url 'contact' %}">Contact</a>
+  <a href="{% url 'help' %}">Help</a>
+
+  
+  <a href="{% url 'friends' %}" style="position:relative;">
+    👥 Friends
+    {% if pending_requests_count > 0 %}
+      <span style="
+        background:red;
+        color:white;
+        font-size:10px;
+        padding:2px 6px;
+        border-radius:50%;
+        margin-left:5px;
+      ">
+        {{ pending_requests_count }}
+      </span>
+    {% endif %}
+  </a>
+
+  
+  <a href="{% url 'notifications' %}" style="position:relative;">
+    🔔
+    {% if pending_requests_count > 0 %}
+      <span style="
+        position:absolute;
+        top:-5px;
+        right:-10px;
+        background:red;
+        color:white;
+        font-size:10px;
+        padding:2px 6px;
+        border-radius:50%;
+      ">
+        {{ pending_requests_count }}
+      </span>
+    {% endif %}
+  </a>
+</div>
+
+    </div>
+
+    
+    <form class="header__search" method="GET" action="{% url 'home' %}">
+      <label>
+        <input name="q" placeholder="Search for rooms..." />
+      </label>
+    </form>
+
+    
+    <nav class="header__menu">
+
+  {% if request.user.is_authenticated %}
+
+  <div class="header__user" style="display:flex; align-items:center; gap:8px;">
+
+    <a href="{% url 'user-profile' request.user.id %}" style="display:flex; align-items:center; gap:6px;">
+      <div class="avatar avatar--medium active">
+        <img src="{{request.user.avatar.url}}" />
+      </div>
+      <p>{{request.user.username}}</p>
+    </a>
+
+    
+    <button class="dropdown-button" style="background:none; border:none; cursor:pointer;">
+      ⬇
+    </button>
+
+  </div>
+
+  
+  <div class="dropdown-menu">
+    <a href="{% url 'user-profile' request.user.id %}" class="dropdown-link">👤 Profile</a>
+    <a href="{% url 'posts' %}" class="dropdown-link">📝 Posts</a>
+    <a href="{% url 'activity' %}" class="dropdown-link">📊 Activity</a>
+    <a href="{% url 'update-user' %}" class="dropdown-link">⚙ Settings</a>
+    <a href="{% url 'friends' %}" class="dropdown-link">👥 Friends</a>
+    <a href="{% url 'logout' %}" class="dropdown-link">🚪 Logout</a>
+  </div>
+
+  {% else %}
+
+  <a href="{% url 'login' %}">
+    <p>Login</p>
+  </a>
+
+  {% endif %}
+
+</nav>
+
+  </div>
+</header>

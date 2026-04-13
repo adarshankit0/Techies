@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Image Insights</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Gemini Image Insights</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Tell me about your image:</h2>
+
+        <form action="result" method="post" enctype="multipart/form-data" onsubmit="showSpinner()">
+            {% csrf_token %}
+            <label for="input">Descriptive Prompt (optional):</label>
+            <input type="text" id="input" name="input" />
+            <br>
+            <label for="file">Upload an image:</label>
+            <input type="file" id="file" name="file" accept="image/jpeg, image/jpg, image/png" />
+
+            <div id="image-preview"></div>
+
+            <button type="submit" class="btn btn-primary">
+                Generate Insights <div id="loading-spinner"></div>
+            </button>
+        </form>
+        <div class="result">Result: {{ result2 }}</div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Created with ❤ by Bard</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSpinner() {
+            document.getElementById('loading-spinner').style.display = 'inline-block';
+        }
+    </script>
+
+</body>
+
+</html>

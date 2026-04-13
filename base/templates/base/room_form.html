@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="create-room layout">
+  <div class="container">
+
+    <div class="layout__box">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <a href="{{request.META.HTTP_REFERER}}">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <path d="M13.12 23.12l-1.41-1.41 6.71-6.71-6.71-6.71 1.41-1.41 8.12 8.12z"></path>
+            </svg>
+          </a>
+          <h3>Create / Update Study Room</h3>
+        </div>
+      </div>
+
+      <div class="layout__body">
+
+        <form method="POST" action="">
+          {% csrf_token %}
+
+          
+          <div class="form__group">
+            <label for="topic">Enter a Topic</label>
+            <input type="text" name="topic" placeholder="e.g. Python" value="{{room.topic.name}}">
+          </div>
+
+          
+          <div class="form__group">
+            <label for="name">Room Name</label>
+            <input type="text" name="name" placeholder="Enter room name..." value="{{room.name}}" required>
+          </div>
+
+          
+          <div class="form__group">
+            <label for="description">Room Description</label>
+            <textarea name="description" placeholder="Write something...">{{room.description}}</textarea>
+          </div>
+
+          <div class="form__action">
+            <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+            <button class="btn btn--main" type="submit">Submit</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}
