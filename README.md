@@ -1,183 +1,175 @@
-# 🚀 Techies – Developers Collaboration Platform
+🚀 Techies – Social + Coding Ecosystem
+💻 CodeTechies by Techies – Learn • Code • Compete • Connect
 
-Techies is a full-stack web application designed to help developers connect, collaborate, and learn together. The platform provides an interactive environment where users can create study rooms, share posts, send friend requests, and stay updated through a notification system.
 
-This project aims to modernize collaborative learning by offering a centralized space for discussions, knowledge sharing, and networking among developers.
 
----
 
-## 🌟 Key Features
 
-### 👥 User Authentication
 
-* Secure login and registration system
-* Email-based authentication
-* User profile with avatar and bio
 
-### 📚 Study Rooms
 
-* Create and join topic-based study rooms
-* Add room descriptions and categories
-* Real-time discussions inside rooms
 
-### 💬 Messaging System
 
-* Users can send messages inside rooms
-* Tracks recent activities
-* Displays participants in each room
+🌐 About Techies
 
-### 📝 Posts & Feed
+Techies is a full-stack Django-based platform that combines:
 
-* Create posts with text and images
-* View posts from all users in a feed
-* Media upload support
+👉 Social Networking
+👉 AI Interaction
+👉 Competitive Coding System (CodeTechies)
 
-### 🤝 Friend System
+It is designed as a complete ecosystem where users can:
 
-* Send and receive friend requests
-* Accept or reject requests
-* Maintain a personal friends list
+Connect with people 🌍
+Share knowledge 💬
+Solve coding problems 💻
+Compete on leaderboard 🏆
+Earn certificates 🎓
+💻 CodeTechies by Techies (Core Feature)
 
-### 🔔 Notifications System
+CodeTechies is the coding engine inside Techies that provides:
 
-* Get notified for friend requests
-* Dynamic notification counter (badge)
-* Central notification page
+🚀 What it Includes:
+🧠 Coding Problems System
+⚡ Online Code Execution (Judge API)
+🧪 Real Testcase-based Evaluation
+🏆 Score System
+📊 Leaderboard Ranking
+🎓 Certificate Generation
+📈 Submission Tracking
 
-### 📩 Contact System
+👉 This makes Techies not just social, but skill-driven & competitive
 
-* Users can submit queries via contact form
-* Data stored in database and visible in admin panel
+🧠 Core Features
+🔹 1. Social Platform
+Chat rooms & discussions
+Friend system
+Notifications
+Profile management
+Post sharing system
+🔹 2. AI Integration
+AI-powered interaction page
+Smart query handling
+🔹 3. CodeTechies (Coding Platform)
+💻 Online Code Editor
+Multi-language support:
+Python 🐍
+C++ ⚙️
+C
+Java ☕
+JavaScript 🌐
+⚡ Run vs Submit System
+Action	Purpose
+▶ Run	Execute code with custom input
+🚀 Submit	Evaluate code using hidden testcases
+🧪 Real Judge System
 
----
+✔ Each problem has multiple testcases
+✔ Code runs against all testcases
+✔ Output is matched with expected results
 
-## 🛠️ Technologies Used
+👉 Supports different logic, different code styles
+👉 Works like real platforms (LeetCode / Codeforces)
 
-### 🎨 Frontend
+🏆 Scoring System
+Based on number of testcases passed
+Dynamic scoring system
+Score = (Passed Testcases / Total Testcases) × Problem Points
+📊 Submission Tracking
 
-* HTML5
-* CSS3
-* JavaScript
+Each submission stores:
 
-### ⚙️ Backend
+User code
+Output
+Score
+Status (Attempted / Completed)
+Timestamp
+🥇 Leaderboard System
+Auto-updated ranking
+Based on total user score
+Competitive environment
+🎓 Certificate System
+Certificate	Condition
+Participation	Attempted but not fully correct
+Completion	All testcases passed
 
-* Python
-* Django Framework
+👉 Certificates are automatically generated after submission
 
-### 🗄️ Database
-
-* SQLite (default Django database)
-
-### 📦 Additional Tools
-
-* Django ORM
-* Bootstrap (for UI styling)
-* Git & GitHub (version control)
-
----
-
-## 📁 Project Structure
-
-```
+🛠️ Tech Stack
+🔹 Backend
+Django (Python)
+SQLite (Development)
+🔹 Frontend
+HTML
+CSS
+JavaScript
+🔹 External API
+Judge0 API (Code Execution Engine)
+📁 Project Structure
 Techies/
 │
-├── base/               # Main application logic
-├── templates/          # HTML templates
-├── static/             # CSS, JS, images
-├── media/              # Uploaded files (images)
-├── studygate/          # Project settings
-├── manage.py           # Entry point of Django project
-└── db.sqlite3          # Database file
-```
-
----
-
-## ▶️ How to Run the Project
-
-Follow these steps to run the project locally:
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone <your-repo-link>
+├── base/                 # Social features
+├── codetechies/          # Coding system (CodeTechies)
+├── static/               # CSS, JS, Images
+├── templates/            # HTML Templates
+├── studygate/            # Main Django project
+├── manage.py
+├── requirements.txt
+└── README.md
+⚙️ Setup & Installation
+1️⃣ Clone Repository
+git clone https://github.com/YOUR_USERNAME/Techies.git
 cd Techies
-```
-
-### 2️⃣ Create Virtual Environment
-
-```bash
+2️⃣ Create Virtual Environment
 python -m venv venv
-```
-
-### 3️⃣ Activate Virtual Environment
-
-```bash
 venv\Scripts\activate
-```
-
-### 4️⃣ Install Dependencies
-
-```bash
+3️⃣ Install Dependencies
 pip install -r requirements.txt
-```
-
-### 5️⃣ Run Migrations
-
-```bash
+4️⃣ Apply Migrations
 python manage.py makemigrations
 python manage.py migrate
-```
-
-### 6️⃣ Start Server
-
-```bash
-python manage.py runserver
-```
-
-### 7️⃣ Open in Browser
-
-```
-http://127.0.0.1:8000/
-```
-
----
-
-## 🔐 Admin Panel Access
-
-To access admin panel:
-
-```bash
+5️⃣ Create Admin User
 python manage.py createsuperuser
-```
+6️⃣ Run Server
+python manage.py runserver
 
-Then open:
+👉 Open in browser:
 
-```
-http://127.0.0.1:8000/admin/
-```
+http://127.0.0.1:8000/
+🧪 Adding Coding Testcases (Important)
+🔹 Fast Method (Django Shell)
+python manage.py shell
+from codetechies.models import Problem, TestCase
 
----
+p = Problem.objects.get(title="Sum Two Numbers")
 
-## 🎯 Future Enhancements
-
-* Real-time chat using WebSockets
-* Like & comment system on posts
-* Advanced notification system
-* Profile customization
-* Mobile app version
-
----
-
-## 📌 Conclusion
-
-Techies provides a collaborative platform where developers can interact, learn, and grow together. It integrates multiple features like study rooms, posts, friendships, and notifications into a single unified system, making it a powerful tool for developer communities.
-
----
-
-## 👨‍💻 Author
+TestCase.objects.create(problem=p, input_data="10 20", expected_output="30")
+TestCase.objects.create(problem=p, input_data="5 5", expected_output="10")
+TestCase.objects.create(problem=p, input_data="1 2", expected_output="3")
+⚠️ Important Notes
+db.sqlite3 is excluded from GitHub
+__pycache__ ignored via .gitignore
+Secure API handling implemented
+Judge system supports real-world coding logic
+🚀 Future Enhancements
+Monaco Editor (VS Code-like editor)
+Code highlighting
+Time & memory constraints
+Contest system
+Docker sandbox execution
+AI-assisted coding hints
+Badges & achievements system
+👨‍💻 Author
 
 Adarsh Priyadarshi
 
----
+Full-stack developer (Django)
+Passionate about building scalable platforms
+Focused on real-world problem solving
+⭐ Support
 
-⭐ If you like this project, feel free to star the repository and contribute!
+If you like this project:
+
+⭐ Star the repository
+🍴 Fork it
+🚀 Contribute
