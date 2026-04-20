@@ -129,18 +129,6 @@ Each submission stores:
 
 ---
 
-## 📁 Project Structure  
-
-
-Techies/
-│
-├── base/ # Social features (chat, posts, users)
-├── codetechies/ # Coding platform (CodeTechies)
-├── static/ # CSS, JS, Images
-├── templates/ # Global HTML templates
-├── studygate/ # Main Django project settings
-├── manage.py # Django project manager
-└── README.md # Project documentation
 
 
 ---
@@ -179,11 +167,11 @@ python manage.py runserver
 
 ---
 
-## 🌟 Final Note  
+<h2 align="center">🌟 Final Note</h2>
 
-### 🚀 Techies is not just a project —  
-### it’s a **complete ecosystem** combining  
-### **social + coding + competition + certification**
+<h3 align="center">🚀 Techies is not just a project —</h3>
+<h3 align="center">it’s a <b>complete ecosystem</b> combining</h3>
+<h3 align="center"><b>social + coding + competition + certification</b></h3>
 
 ---
 
@@ -210,7 +198,7 @@ python manage.py runserver
 
 ## 👨‍💻 Author  
 
-**Adarsh Priyadarshi**  
+<p><b>Adarsh Priyadarshi</b></p>
 
 - Full-stack developer (Django)  
 - Passionate about building scalable platforms  
