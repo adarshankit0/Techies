@@ -181,3 +181,8 @@ python manage.py runserver
 🚀 Techies is not just a project —
 it’s a complete ecosystem combining
 social + coding + competition + certification
+
+🌟 Final Note
+
+ #🚀 Techies is not just a project —
+### it’s a complete ecosystem combining social + coding + competition + certification
