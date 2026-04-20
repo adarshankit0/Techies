@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container">
+
+  <div class="layout__box">
+    <div class="layout__boxHeader">
+      <h3>📜 My Certificates</h3>
+    </div>
+
+    <div class="layout__body">
+
+      {% if cert %}
+
+        <h2>🎉 Congratulations {{ request.user.username }}!</h2>
+        <p>You have earned the following certificates:</p><br>
+
+        {% for c in cert %}
+          <div style="
+              background:#2f2f3f;
+              padding:15px;
+              margin-bottom:15px;
+              border-radius:10px;
+          ">
+
+            <!-- 🧠 Problem Name -->
+            <h3 style="margin-bottom:5px;">
+              {{ c.problem.title }}
+            </h3>
+
+            <!-- 🎯 Difficulty -->
+            <p>
+              Difficulty:
+              <b>
+                {% if c.problem.difficulty == 'easy' %}
+                  <span style="color:lightgreen;">Easy</span>
+                {% elif c.problem.difficulty == 'medium' %}
+                  <span style="color:orange;">Medium</span>
+                {% else %}
+                  <span style="color:red;">Hard</span>
+                {% endif %}
+              </b>
+            </p>
+
+            <!-- 🏆 Certificate Type -->
+            <p>Type: <b>{{ c.cert_type|title }}</b></p>
+
+            <!-- 📅 Date -->
+            <p>Date: {{ c.issued_date|date:"d M Y" }}</p>
+
+            <!-- 📥 DOWNLOAD BUTTON -->
+            <a href="{% url 'download-cert' c.id %}"
+               target="_blank"
+               class="btn btn--main">
+               ⬇ Download Certificate
+            </a>
+
+          </div>
+        {% endfor %}
+
+      {% else %}
+
+        <p>❌ No certificates yet.</p><br>
+        <p>👉 Attempt problems to earn participation certificates.</p><br>
+        <p>👉 Solve correctly to earn completion certificates.</p>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

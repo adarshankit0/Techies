@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Techies</title>
+
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <style>
+        /* CodeTechies Button */
+        .code-btn {
+            background: #00d1b2;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .code-btn:hover {
+            background: #00b89c;
+        }
+
+        /* 🔥 GLOBAL FLOATING BACK BUTTON */
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: #00d1b2;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #00b89c;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container header__container">
+
+        <a href="{% url 'home' %}" class="header__logo">
+            <h2>Techies</h2>
+        </a>
+
+        <nav class="header__menu">
+            <a href="{% url 'home' %}">🏠 Home</a>
+            <a href="{% url 'ai' %}">🤖 AI</a>
+            <a href="{% url 'posts' %}">📝 Posts</a>
+
+            <a href="{% url 'code-home' %}" class="code-btn">
+                💻 CodeTechies
+            </a>
+
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'help' %}">Help</a>
+        </nav>
+
+        <div class="header__user">
+            {% if request.user.is_authenticated %}
+                <span>👤 {{request.user.username}}</span>
+                <a href="{% url 'logout' %}">🚪 Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+
+    </div>
+</header>
+
+<!-- 🔥 MAIN CONTENT -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- 🔙 GLOBAL FLOATING BACK BUTTON -->
+{% if request.path != '/' %}
+<button onclick="goBack()" class="back-btn">
+    ⬅
+</button>
+{% endif %}
+
+<!-- 🔥 SCRIPT (ONLY ONE FUNCTION) -->
+<script>
+function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "{% url 'home' %}";
+    }
+}
+</script>
+
+</body>
+</html>

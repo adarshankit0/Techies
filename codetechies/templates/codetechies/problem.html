@@ -1,0 +1,134 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  <div style="background:#2c2f4a; padding:20px; border-radius:12px;">
+
+    <!-- TITLE -->
+    <h2 style="color:white;">{{ problem.title }}</h2>
+    <p style="color:#ccc;">{{ problem.description }}</p>
+
+    <!-- LANGUAGE -->
+    <div style="margin:15px 0;">
+      <label style="color:white;">Select Language:</label>
+      <select id="language" style="padding:8px; border-radius:6px;">
+        <option value="71">Python</option>
+        <option value="54">C++</option>
+        <option value="50">C</option>
+        <option value="62">Java</option>
+        <option value="63">JavaScript</option>
+      </select>
+    </div>
+
+    <!-- CODE -->
+    <textarea id="code" placeholder="Write your code here..."
+      style="width:100%; height:300px; border-radius:10px; padding:10px;"></textarea>
+
+    <!-- CUSTOM INPUT -->
+    <div style="margin-top:20px;">
+      <label style="color:white;">Custom Input:</label>
+      <textarea id="custom_input" rows="5" style="
+          width:100%;
+          padding:10px;
+          border-radius:6px;
+          background:#1e1e1e;
+          color:white;
+          border:1px solid #444;
+      " placeholder="Enter input here..."></textarea>
+    </div>
+
+    <!-- BUTTONS -->
+    <div style="margin-top:15px; display:flex; gap:10px;">
+
+      <button onclick="runCode()" class="btn btn--main">
+        ▶ Run
+      </button>
+
+      <button onclick="submitCode()" class="btn btn--main" style="background:#22c55e;">
+        🚀 Submit
+      </button>
+
+      <button onclick="clearCode()" class="btn btn--main">
+        🧹 Clear
+      </button>
+
+    </div>
+
+    <!-- OUTPUT -->
+    <div style="margin-top:20px;">
+      <h4 style="color:white;">Output:</h4>
+      <pre id="outputBox" style="
+        background:black;
+        color:#00ff00;
+        padding:10px;
+        border-radius:8px;
+        min-height:100px;"></pre>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- JS -->
+<script>
+
+// ▶ RUN (only output)
+function runCode() {
+    let code = document.getElementById("code").value;
+    let language = document.getElementById("language").value;
+    let custom_input = document.getElementById("custom_input").value;
+
+    fetch("", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body:
+            "code=" + encodeURIComponent(code) +
+            "&language=" + language +
+            "&custom_input=" + encodeURIComponent(custom_input)
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("outputBox").innerText = data.output;
+    });
+}
+
+
+// 🚀 SUBMIT (score + certificate)
+function submitCode() {
+    let code = document.getElementById("code").value;
+    let language = document.getElementById("language").value;
+
+    fetch("", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body:
+            "code=" + encodeURIComponent(code) +
+            "&language=" + language +
+            "&submit=true"
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("outputBox").innerText =
+            data.output + "\n\nScore: " + data.score;
+    });
+}
+
+
+// 🧹 CLEAR
+function clearCode() {
+    document.getElementById("code").value = "";
+    document.getElementById("custom_input").value = "";
+    document.getElementById("outputBox").innerText = "";
+}
+
+</script>
+
+{% endblock %}

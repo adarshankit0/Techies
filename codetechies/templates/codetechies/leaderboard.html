@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container">
+
+  <h2>🏆 Leaderboard</h2>
+
+  <div class="layout__box">
+    <div class="layout__body">
+
+      {% for user in data %}
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        padding:10px;
+        border-bottom:1px solid #444;
+      ">
+        <span>
+          {% if user.rank == 1 %} 🥇
+          {% elif user.rank == 2 %} 🥈
+          {% elif user.rank == 3 %} 🥉
+          {% endif %}
+
+          {{user.rank}}. {{user.user.username}}
+        </span>
+
+        <span>{{user.total_score}} pts</span>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

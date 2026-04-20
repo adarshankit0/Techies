@@ -1,0 +1,111 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  <!-- 🔍 SEARCH + FILTER -->
+  <div style="margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap;">
+
+    <form method="GET" style="display:flex; gap:10px; flex-wrap:wrap;">
+
+      <!-- SEARCH -->
+      <input type="text" name="q" value="{{ query|default:'' }}"
+        placeholder="Search problems..."
+        style="padding:8px; border-radius:6px; border:none; width:220px;">
+
+      <!-- FILTER -->
+      <select name="difficulty" style="padding:8px; border-radius:6px;">
+        <option value="all">All Levels</option>
+        <option value="easy" {% if selected_difficulty == 'easy' %}selected{% endif %}>Easy</option>
+        <option value="medium" {% if selected_difficulty == 'medium' %}selected{% endif %}>Medium</option>
+        <option value="hard" {% if selected_difficulty == 'hard' %}selected{% endif %}>Hard</option>
+      </select>
+
+      <!-- BUTTON -->
+      <button type="submit" class="btn btn--main">🔎 Search</button>
+
+      <!-- RESET -->
+      <a href="{% url 'code-home' %}" class="btn btn--main">Reset</a>
+
+    </form>
+
+  </div>
+
+  <!-- NAV BUTTONS -->
+  <div class="action-buttons">
+
+  <a href="{% url 'leaderboard' %}" class="btn btn--main">🏆 Leaderboard</a>
+  <a href="{% url 'myscore' %}" class="btn btn--main">📊 My Score</a>
+  <a href="{% url 'certificate' %}" class="btn btn--main">📜 Certificate</a>
+  <a href="{% url 'dashboard' %}" class="btn btn--main">📈 Dashboard</a>
+
+</div>
+  <!-- HEADER -->
+  <div class="roomList__header">
+    <h2>💻 CodeTechies</h2>
+    <p>Solve coding problems & improve your rank 🚀</p>
+  </div>
+
+  <!-- PROBLEMS LIST -->
+  {% for problem in page_obj %}
+  <div class="roomListRoom">
+
+    <div class="roomListRoom__header">
+      <span>Problem {{ problem.id }}</span>
+    </div>
+
+    <!-- TITLE + DIFFICULTY -->
+    <div class="roomListRoom__content">
+      <a href="{% url 'problem' problem.id %}">
+        <div class="problem-row">
+
+          <span>{{ problem.title }}</span>
+
+          <!-- 🎯 CLEAN BADGE -->
+          <span class="difficulty-badge {{ problem.difficulty|default:'easy' }}">
+              {{ problem.difficulty|default:"easy"|title }}
+          </span>
+
+        </div>
+      </a>
+    </div>
+
+    <!-- META -->
+    <div class="roomListRoom__meta">
+      <span class="roomListRoom__joined">
+        🧠 Practice Problem
+      </span>
+
+      <span class="roomListRoom__topic">
+        Code
+      </span>
+    </div>
+
+  </div>
+  {% empty %}
+    <p>No problems found.</p>
+  {% endfor %}
+
+  <!-- 📄 PAGINATION -->
+  <div style="margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+
+    {% if page_obj.has_previous %}
+      <a href="?page=1" class="btn btn--main">First</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn--main">Prev</a>
+    {% endif %}
+
+    <span style="padding:10px; color:white;">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn--main">Next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn--main">Last</a>
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}

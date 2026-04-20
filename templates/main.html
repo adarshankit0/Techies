@@ -1,32 +1,71 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
-    <title>Techies - Find study partners around the world!</title>
-  </head>
 
-  <body>
+    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
+    <title>Techies - Find study partners around the world!</title>
+
+    <style>
+        /* 🔙 Clean Back Button */
+        .back-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #00d1b2;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 10px 20px;
+        }
+
+        .back-btn:hover {
+            background: #00b89c;
+        }
+    </style>
+</head>
+
+<body>
 
     {% include 'navbar.html' %}
-    {% if messages %}
-    <ul class="messages">
 
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-
+    <!-- 🔙 GLOBAL BACK BUTTON -->
+    {% if request.path != '/' %}
+    <a href="javascript:goBack()" class="back-btn">
+        ⬅ Back
+    </a>
     {% endif %}
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="main-content">
     {% block content %}
-    
     {% endblock %}
+</div>
+    
+
+    <script>
+    function goBack() {
+        if (document.referrer !== "") {
+            window.history.back();
+        } else {
+            window.location.href = "/";
+        }
+    }
+    </script>
 
     <script src="{% static 'js/script.js' %}"></script>
-  </body>
+
+</body>
 </html>

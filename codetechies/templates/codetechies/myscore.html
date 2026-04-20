@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container">
+
+  <div class="layout__box">
+    <div class="layout__boxHeader">
+      <h3>📊 My Score</h3>
+    </div>
+
+    <!-- TOTAL SCORE CARD -->
+    <div class="score-card">
+      <h2>{{ total }} Points</h2>
+      <p>Keep solving problems to increase your rank 🚀</p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Problem</th>
+            <th>Difficulty</th>
+            <th>Score</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for sub in submissions %}
+          <tr>
+            <td>{{ sub.problem.title }}</td>
+
+            <td>
+              <span class="difficulty {{ sub.problem.difficulty|lower }}">
+                {{ sub.problem.difficulty }}
+              </span>
+            </td>
+
+            <td class="score">{{ sub.score }}</td>
+
+            <td>
+              {% if sub.score == 100 %}
+                <span class="status completed">✔ Completed</span>
+              {% else %}
+                <span class="status attempted">⚠ Attempted</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

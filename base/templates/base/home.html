@@ -4,13 +4,41 @@
 <main class="layout layout--3">
   <div class="container">
 
-    
-    {% include 'base/topics_component.html' %}
+    <!-- 🔥 LEFT SIDEBAR (TOPICS + CODETECHIES) -->
+    <div>
+      {% include 'base/topics_component.html' %}
 
-    
+      <!-- 🔥 CODETECHIES FEATURE BOX -->
+      <div style="
+        margin-top:20px;
+        background:#2d2d39;
+        padding:15px;
+        border-radius:10px;
+      ">
+        <h4 style="margin-bottom:10px;">🚀 Features</h4>
+
+        <a href="{% url 'code-home' %}" style="
+          display:block;
+          padding:10px;
+          background:#00d1b2;
+          color:white;
+          border-radius:8px;
+          text-decoration:none;
+          text-align:center;
+        ">
+          💻 Open CodeTechies
+        </a>
+
+        <p style="font-size:12px; margin-top:8px; opacity:0.7;">
+          Solve coding problems, compete & earn certificates
+        </p>
+      </div>
+    </div>
+
+    <!-- 🔥 CENTER (ROOMS + CODETECHIES BUTTON) -->
     <div class="roomList">
 
-      
+      <!-- MOBILE -->
       <div class="mobile-menu">
         <form action="{% url 'home' %}" method="GET" class="header__search">
           <label>
@@ -24,30 +52,39 @@
         </div>
       </div>
 
-      
+      <!-- HEADER -->
       <div class="roomList__header">
         <div>
           <h2>📚 Study Rooms</h2>
           <p>{{room_count}} Rooms available</p>
         </div> 
         
-        {% if request.user.is_authenticated %}
-        <a class="btn btn--main" href="{% url 'create-room' %}">
-          ➕ Create Room
-        </a>
-        {% else %}
-        <a class="btn btn--main" href="{% url 'login' %}">
-          🔐 Login to Create
-        </a>
-        {% endif %}
+        <div style="display:flex; gap:10px;">
+
+          <!-- 🔥 CODETECHIES BUTTON -->
+          <a class="btn btn--main" href="{% url 'code-home' %}">
+            💻 CodeTechies
+          </a>
+
+          {% if request.user.is_authenticated %}
+          <a class="btn btn--main" href="{% url 'create-room' %}">
+            ➕ Create Room
+          </a>
+          {% else %}
+          <a class="btn btn--main" href="{% url 'login' %}">
+            🔐 Login to Create
+          </a>
+          {% endif %}
+
+        </div>
       </div>
 
-      
+      <!-- ROOMS -->
       {% include 'base/feed_component.html' %}
 
     </div>
 
-    
+    <!-- 🔥 RIGHT SIDEBAR -->
     {% include 'base/activites_component.html' %}
 
   </div>

@@ -1,0 +1,99 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container dashboard-page">
+
+  <div class="layout__box dashboard-box">
+    <div class="layout__boxHeader">
+      <h3>📊 Dashboard</h3>
+    </div>
+
+    <!-- 🔥 STATS CARDS -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <p class="stat-title">Problems Solved</p>
+        <h2>{{ solved }} / {{ total_problems }}</h2>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-title">Accuracy</p>
+        <h2>{{ accuracy }}%</h2>
+      </div>
+
+      <div class="stat-card">
+        <p class="stat-title">Rank</p>
+        <h2>#{{ rank }}</h2>
+      </div>
+
+    </div>
+
+    <!-- 🚀 PROGRESS SECTION -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <span>Solved Progress</span>
+        <span>{{ progress }}%</span>
+      </div>
+
+      <div class="progress-bar">
+        <!-- ✅ FIXED LINE -->
+        <div class="progress-fill" data-progress="{{ progress }}"></div>
+      </div>
+
+      <small>{{ solved }} out of {{ total_problems }} problems solved</small>
+    </div>
+
+    <!-- ⚡ RECENT SUBMISSIONS -->
+    <div class="recent">
+
+      <div class="recent-header">
+        <h3>Recent Submissions</h3>
+      </div>
+
+      <div class="table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Problem</th>
+              <th>Score</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for sub in recent %}
+            <tr>
+              <td class="problem-name">{{ sub.problem.title }}</td>
+
+              <td class="score">{{ sub.score }}</td>
+
+              <td>
+                {% if sub.score == 100 %}
+                  <span class="status completed">✔ Completed</span>
+                {% else %}
+                  <span class="status attempted">⚠ Attempted</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="3" style="text-align:center;">No submissions yet</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<script>
+  document.querySelectorAll('.progress-fill').forEach(el => {
+    const value = el.getAttribute('data-progress');
+    el.style.width = value + '%';
+  });
+</script>
+
+{% endblock %}
