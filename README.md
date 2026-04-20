@@ -131,34 +131,53 @@ Each submission stores:
 
 ## 📁 Project Structure  
 
+
 Techies/
 │
-├── base/
-├── codetechies/
-├── static/
-├── templates/
-├── studygate/
-├── manage.py
-└── README.md
+├── base/ # Social features (chat, posts, users)
+├── codetechies/ # Coding platform (CodeTechies)
+├── static/ # CSS, JS, Images
+├── templates/ # Global HTML templates
+├── studygate/ # Main Django project settings
+├── manage.py # Django project manager
+└── README.md # Project documentation
 
 
 ---
 
 ## ⚙️ Setup  
 
+### 🔹 1. Clone the Repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/Techies.git
 cd Techies
 
+👉 Downloads the project to your system
+
+🔹 2. Create Virtual Environment
 python -m venv venv
 venv\Scripts\activate
 
+👉 Creates isolated Python environment
+
+🔹 3. Install Dependencies
 pip install -r requirements.txt
 
+👉 Installs all required packages
+
+🔹 4. Apply Database Migrations
 python manage.py makemigrations
 python manage.py migrate
 
+👉 Sets up database tables
+
+🔹 5. Run the Server 🚀
 python manage.py runserver
 
-Techies is not just a project —
-it’s a complete ecosystem combining social + coding + competition + get certified
+👉 Starts your project locally
+
+🌟 Final Note
+
+🚀 Techies is not just a project —
+it’s a complete ecosystem combining
+social + coding + competition + certification
