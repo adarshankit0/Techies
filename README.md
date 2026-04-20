@@ -176,13 +176,54 @@ python manage.py runserver
 
 👉 Starts your project locally
 
-🌟 Final Note
 
-🚀 Techies is not just a project —
-it’s a complete ecosystem combining
-social + coding + competition + certification
+---
 
-🌟 Final Note
+## 🌟 Final Note  
 
- #🚀 Techies is not just a project —
-### it’s a complete ecosystem combining social + coding + competition + certification
+### 🚀 Techies is not just a project —  
+### it’s a **complete ecosystem** combining  
+### **social + coding + competition + certification**
+
+---
+
+## ⚠️ Important Notes  
+
+- db.sqlite3 is excluded from GitHub  
+- __pycache__ ignored via .gitignore  
+- Secure API handling implemented  
+- Judge system supports real-world coding logic  
+
+---
+
+## 🚀 Future Enhancements  
+
+- Monaco Editor (VS Code-like editor)  
+- Code highlighting  
+- Time & memory constraints  
+- Contest system  
+- Docker sandbox execution  
+- AI-assisted coding hints  
+- Badges & achievements system  
+
+---
+
+## 👨‍💻 Author  
+
+**Adarsh Priyadarshi**  
+
+- Full-stack developer (Django)  
+- Passionate about building scalable platforms  
+- Focused on real-world problem solving  
+
+---
+
+## ⭐ Support  
+
+If you like this project:
+
+- ⭐ Star the repository  
+- 🍴 Fork it  
+- 🚀 Contribute  
+
+---
