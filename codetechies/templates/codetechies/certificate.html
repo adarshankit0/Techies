@@ -23,12 +23,12 @@
               border-radius:10px;
           ">
 
-            <!-- 🧠 Problem Name -->
+            
             <h3 style="margin-bottom:5px;">
               {{ c.problem.title }}
             </h3>
 
-            <!-- 🎯 Difficulty -->
+            
             <p>
               Difficulty:
               <b>
@@ -42,13 +42,13 @@
               </b>
             </p>
 
-            <!-- 🏆 Certificate Type -->
+            
             <p>Type: <b>{{ c.cert_type|title }}</b></p>
 
-            <!-- 📅 Date -->
+            
             <p>Date: {{ c.issued_date|date:"d M Y" }}</p>
 
-            <!-- 📥 DOWNLOAD BUTTON -->
+            
             <a href="{% url 'download-cert' c.id %}"
                target="_blank"
                class="btn btn--main">

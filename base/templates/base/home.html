@@ -4,11 +4,11 @@
 <main class="layout layout--3">
   <div class="container">
 
-    <!-- 🔥 LEFT SIDEBAR (TOPICS + CODETECHIES) -->
+    
     <div>
       {% include 'base/topics_component.html' %}
 
-      <!-- 🔥 CODETECHIES FEATURE BOX -->
+      
       <div style="
         margin-top:20px;
         background:#2d2d39;
@@ -35,10 +35,10 @@
       </div>
     </div>
 
-    <!-- 🔥 CENTER (ROOMS + CODETECHIES BUTTON) -->
+    
     <div class="roomList">
 
-      <!-- MOBILE -->
+      
       <div class="mobile-menu">
         <form action="{% url 'home' %}" method="GET" class="header__search">
           <label>
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <!-- HEADER -->
+      
       <div class="roomList__header">
         <div>
           <h2>📚 Study Rooms</h2>
@@ -61,7 +61,7 @@
         
         <div style="display:flex; gap:10px;">
 
-          <!-- 🔥 CODETECHIES BUTTON -->
+          
           <a class="btn btn--main" href="{% url 'code-home' %}">
             💻 CodeTechies
           </a>
@@ -79,12 +79,12 @@
         </div>
       </div>
 
-      <!-- ROOMS -->
+      
       {% include 'base/feed_component.html' %}
 
     </div>
 
-    <!-- 🔥 RIGHT SIDEBAR -->
+    
     {% include 'base/activites_component.html' %}
 
   </div>

@@ -74,11 +74,11 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') else ''
 
     rooms = Room.objects.filter(
-        Q(topic__name__icontains=q) |
-        Q(name__icontains=q) |
-        Q(description__icontains=q)
-    )
-
+    Q(topic__name__icontains=q) |
+    Q(name__icontains=q) |
+    Q(description__icontains=q)
+).order_by('-created')
+    
     topics = Topic.objects.all().order_by('name')  # 🔥 sorted
     room_messages = Message.objects.all().order_by('-created')[:5]
 
@@ -128,7 +128,7 @@ def joinRoom(request, pk):
 
 @login_required(login_url='login')
 def createRoom(request):
-    topics = Topic.objects.all().order_by('name')  # 🔥 sorted topics
+    topics = Topic.objects.all().order_by('name')  
 
     if request.method == 'POST':
 

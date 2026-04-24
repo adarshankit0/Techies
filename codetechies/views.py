@@ -18,7 +18,7 @@ from reportlab.lib.utils import ImageReader
 
 from .models import Problem, Submission, Leaderboard, Certificate, TestCase
 
-# ================= UPDATE LEADERBOARD =================
+
 def update_leaderboard():
     users = Submission.objects.values('user').distinct()
     leaderboard = []
@@ -52,7 +52,7 @@ def update_leaderboard():
         rank += 1
 
 
-# ================= HOME =================
+
 def codeHome(request):
     problems = Problem.objects.all().order_by('id')
 
@@ -79,7 +79,7 @@ def codeHome(request):
     })
 
 
-# ================= PROBLEM PAGE =================
+
 @login_required
 def problemPage(request, pk):
     problem = Problem.objects.get(id=pk)
@@ -92,9 +92,7 @@ def problemPage(request, pk):
 
         url = "https://ce.judge0.com/submissions?base64_encoded=false&wait=true"
 
-        # =========================
-        # ▶ RUN BUTTON (ONLY OUTPUT)
-        # =========================
+        
         if not is_submit:
             payload = {
                 "language_id": int(language),
@@ -120,12 +118,10 @@ def problemPage(request, pk):
                 'score': 0
             })
 
-        # =========================
-        # 🚀 SUBMIT BUTTON (REAL JUDGE)
-        # =========================
+        
         testcases = TestCase.objects.filter(problem=problem)
 
-        # 🔥 HANDLE NO TESTCASES (IMPORTANT FIX)
+        
         if not testcases.exists():
             score = 0
             status = "attempted"
@@ -155,9 +151,7 @@ def problemPage(request, pk):
                 'score': 0
             })
 
-        # =========================
-        # 🧪 RUN ALL TESTCASES
-        # =========================
+        
         passed = 0
         total = testcases.count()
         last_output = ""
@@ -187,15 +181,11 @@ def problemPage(request, pk):
             if output == tc.expected_output.strip():
                 passed += 1
 
-        # =========================
-        # 🎯 SCORING LOGIC
-        # =========================
+        
         score = int((passed / total) * problem.points)
         status = "completed" if passed == total else "attempted"
 
-        # =========================
-        # 💾 SAVE SUBMISSION
-        # =========================
+        
         Submission.objects.create(
             user=request.user,
             problem=problem,
@@ -205,9 +195,7 @@ def problemPage(request, pk):
             status=status
         )
 
-        # =========================
-        # 🏆 LEADERBOARD + CERTIFICATE
-        # =========================
+        
         update_leaderboard()
 
         cert_type = 'completion' if passed == total else 'participation'
@@ -230,14 +218,14 @@ def problemPage(request, pk):
 
     return render(request, 'codetechies/problem.html', {'problem': problem})
 
-# ================= LEADERBOARD =================
+
 @login_required
 def leaderboardPage(request):
     data = Leaderboard.objects.all().order_by('rank')
     return render(request, 'codetechies/leaderboard.html', {'data': data})
 
 
-# ================= MY SCORE =================
+
 @login_required
 def myScore(request):
     latest_submissions = (
@@ -259,14 +247,14 @@ def myScore(request):
     })
 
 
-# ================= CERTIFICATE =================
+
 @login_required
 def certificatePage(request):
     cert = Certificate.objects.filter(user=request.user).order_by('-issued_date')
     return render(request, 'codetechies/certificate.html', {'cert': cert})
 
 
-# ================= DOWNLOAD CERTIFICATE =================
+
 @login_required
 def downloadCertificate(request, cert_id):
     cert = Certificate.objects.get(id=cert_id, user=request.user)
@@ -282,20 +270,20 @@ def downloadCertificate(request, cert_id):
     width, height = 11 * inch, 8.5 * inch
     p = canvas.Canvas(buffer, pagesize=(width, height))
 
-    # 🌈 BACKGROUND
+    
     p.setFillColorRGB(0.95, 0.97, 1)
     p.rect(0, 0, width, height, fill=1)
 
-    # 🟡 OUTER BORDER
+    
     p.setStrokeColorRGB(0.8, 0.6, 0.1)
     p.setLineWidth(6)
     p.rect(40, 40, width-80, height-80)
 
-    # INNER BORDER
+    
     p.setLineWidth(2)
     p.rect(60, 60, width-120, height-120)
 
-    # 🏆 LOGO (FIXED POSITION ✅)
+    
     logo_path = os.path.join(settings.BASE_DIR, 'static/images/logo.png')
     if os.path.exists(logo_path):
         logo_width = 80
@@ -305,44 +293,44 @@ def downloadCertificate(request, cert_id):
 
         p.drawImage(ImageReader(logo_path), logo_x, logo_y, width=logo_width, height=logo_height)
 
-    # 🏅 TITLE (adjusted spacing)
+    
     p.setFont("Helvetica-Bold", 30)
     p.setFillColorRGB(0.1, 0.1, 0.4)
     p.drawCentredString(width/2, height-240, cert_title)
 
-    # SUBTITLE
+    
     p.setFont("Helvetica", 16)
     p.setFillColorRGB(0.2, 0.2, 0.2)
     p.drawCentredString(width/2, height-280, "CodeTechies by Techies proudly presents this certificate to")
 
-    # 👤 USER NAME (HIGHLIGHTED)
+    
     p.setFont("Helvetica-Bold", 36)
     p.setFillColorRGB(0.0, 0.3, 0.8)
     p.drawCentredString(width/2, height-330, request.user.username.upper())
 
-    # DESCRIPTION
+    
     p.setFont("Helvetica", 16)
     p.setFillColorRGB(0.2, 0.2, 0.2)
     p.drawCentredString(width/2, height-370, action_text)
 
-    # 📌 PROBLEM NAME (HIGHLIGHTED)
+    
     p.setFont("Helvetica-Bold", 22)
     p.setFillColorRGB(0.6, 0.1, 0.1)
     p.drawCentredString(width/2, height-410, problem_name)
 
-    # 🎯 DIFFICULTY (HIGHLIGHTED)
+    
     p.setFont("Helvetica-Bold", 18)
     p.setFillColorRGB(0.2, 0.5, 0.2)
     p.drawCentredString(width/2, height-445, f"Difficulty Level: {difficulty}")
 
-    # 📅 CERT DETAILS
+    
     cert_code = str(cert.id).zfill(6)
     p.setFont("Helvetica", 12)
     p.setFillColorRGB(0, 0, 0)
     p.drawString(90, 110, f"Certificate ID: TECH-{cert_code}")
     p.drawString(90, 90, f"Date: {datetime.now().strftime('%d %B %Y')}")
 
-    # ✍ SIGNATURE
+    
     sign_path = os.path.join(settings.BASE_DIR, 'static/images/signature.png')
     if os.path.exists(sign_path):
         p.drawImage(ImageReader(sign_path), width-220, 100, width=130, height=45)
@@ -350,7 +338,7 @@ def downloadCertificate(request, cert_id):
     p.setFont("Helvetica", 12)
     p.drawCentredString(width-155, 85, "Authorized Signature")
 
-    # 🔥 FOOTER BRANDING
+    
     p.setFont("Helvetica-Bold", 16)
     p.setFillColorRGB(0.1, 0.1, 0.5)
     p.drawCentredString(width/2, 80, "CodeTechies by Techies")
@@ -361,7 +349,7 @@ def downloadCertificate(request, cert_id):
     buffer.seek(0)
     return HttpResponse(buffer, content_type='application/pdf')
 
-# ================= DASHBOARD =================
+
 @login_required
 def dashboard(request):
     user = request.user

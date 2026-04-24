@@ -1243,7 +1243,7 @@ a {
 .difficulty-badge.hard {
     background: #e74c3c;
 }
-/* SCORE CARD */
+
 .score-card {
     background: linear-gradient(135deg, #3b82f6, #6366f1);
     color: white;
@@ -1257,7 +1257,7 @@ a {
     font-size: 28px;
 }
 
-/* TABLE */
+
 .table-container {
     overflow-x: auto;
 }
@@ -1280,12 +1280,12 @@ a {
     border-bottom: 1px solid #444;
 }
 
-/* ROW HOVER */
+
 .custom-table tr:hover {
     background-color: #2a2d38;
 }
 
-/* DIFFICULTY COLORS */
+
 .difficulty {
     padding: 5px 10px;
     border-radius: 6px;
@@ -1307,7 +1307,7 @@ a {
     color: white;
 }
 
-/* STATUS */
+
 .status {
     padding: 5px 10px;
     border-radius: 6px;
@@ -1324,11 +1324,11 @@ a {
     color: black;
 }
 
-/* SCORE */
+
 .score {
     font-weight: bold;
 }
-/* GRID */
+
 .stats-grid {
     display: flex;
     gap: 20px;
@@ -1347,7 +1347,7 @@ a {
     margin-top: 10px;
 }
 
-/* PROGRESS BAR */
+
 .progress-section {
     margin: 20px 0;
 }
@@ -1365,11 +1365,11 @@ a {
     background: linear-gradient(90deg, #22c55e, #4ade80);
 }
 
-/* RECENT TABLE */
+
 .recent {
     margin-top: 20px;
 }
-/* 🔥 IMPROVED CARD LOOK */
+
 .stat-card {
     border-radius: 12px;
     transition: 0.3s;
@@ -1379,20 +1379,20 @@ a {
     transform: translateY(-5px);
 }
 
-/* TITLE STYLE */
+
 .stat-title {
     font-size: 14px;
     color: #aaa;
 }
 
-/* PROGRESS HEADER */
+
 .progress-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
 }
 
-/* TABLE IMPROVEMENTS */
+
 .table-container {
     overflow-x: auto;
 }
@@ -1419,7 +1419,7 @@ a {
     background: #2a2d38;
 }
 
-/* STATUS BADGES */
+
 .status {
     padding: 5px 10px;
     border-radius: 6px;
@@ -1436,11 +1436,11 @@ a {
     color: black;
 }
 
-/* SCORE */
+
 .score {
     font-weight: bold;
 }
-/* BUTTON CONTAINER FIX */
+
 .action-buttons {
     display: flex;
     flex-wrap: wrap;          /* prevents overlap */
@@ -1448,7 +1448,7 @@ a {
     margin: 15px 0 25px 0;
 }
 
-/* BUTTON IMPROVEMENT */
+
 .btn--main {
     padding: 10px 18px;
     border-radius: 8px;
@@ -1469,22 +1469,20 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
 }
-/* ================= DASHBOARD FIX (ADD AT BOTTOM) ================= */
 
-/* Container width fix */
 .container {
     width: 95%;
     max-width: 1200px;
     margin: auto;
 }
 
-/* Dashboard box width */
+
 .layout__box {
     max-width: 1000px;
     margin: auto;
 }
 
-/* Stats grid fix */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1492,7 +1490,7 @@ a {
     margin: 20px 0;
 }
 
-/* Stat card improvement */
+
 .stat-card {
     background: #2c2f3a;
     padding: 25px;
@@ -1505,12 +1503,12 @@ a {
     transform: translateY(-5px);
 }
 
-/* Progress spacing */
+
 .progress-section {
     margin: 30px 0;
 }
 
-/* Table fix */
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -1521,21 +1519,21 @@ a {
     min-width: 600px;
 }
 
-/* Recent section spacing */
+
 .recent {
     margin-top: 30px;
 }
-/* FIX DASHBOARD INTERNAL SPACING */
+
 .layout__boxHeader {
     padding: 15px 20px;
-    border-bottom: 1px solid #444;  /* separation line */
+    border-bottom: 1px solid #444;  
 }
-/* ADD SPACE BETWEEN HEADER & CONTENT */
+
 .layout__box > *:not(.layout__boxHeader) {
     padding: 20px;
 }
 .stats-grid {
-    margin-top: 10px;   /* slight spacing below header */
+    margin-top: 10px;   
 }
 .progress-section {
     margin-top: 10px;
@@ -1545,15 +1543,15 @@ a {
 }
 
 .header {
-    position: sticky;   /* 🔥 IMPORTANT CHANGE */
+    position: sticky;   
     top: 0;
     width: 100%;
     z-index: 1000;
 }
-/* ===== GLOBAL FIXED BACK BUTTON ===== */
+
 .back-btn {
     position: fixed;
-    top: 80px;       /* below navbar */
+    top: 80px;       
     left: 20px;
     z-index: 9999;
 

@@ -12,7 +12,11 @@
     </a>
 
     <div class="roomListRoom__actions">
-      <span>{{room.updated|timesince}} ago</span>
+      <span>{% if room.created %}
+    {{ room.created|timesince }} ago
+{% else %}
+    Just now
+{% endif %}</span>
     </div>
   </div>
 

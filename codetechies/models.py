@@ -4,7 +4,7 @@ from django.conf import settings
 User = settings.AUTH_USER_MODEL
 
 
-# ================= PROBLEM =================
+
 class Problem(models.Model):
     DIFFICULTY_CHOICES = (
         ('easy', 'Easy'),
@@ -28,7 +28,7 @@ class Problem(models.Model):
         return f"{self.title} ({self.difficulty})"
 
 
-# ================= TEST CASE =================
+
 class TestCase(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     input_data = models.TextField()
@@ -38,7 +38,7 @@ class TestCase(models.Model):
         return f"{self.problem.title} TestCase"
 
 
-# ================= SUBMISSION =================
+
 class Submission(models.Model):
     STATUS_CHOICES = (
         ('attempted', 'Attempted'),
@@ -65,7 +65,7 @@ class Submission(models.Model):
         return f"{self.user} - {self.problem} - {self.status}"
 
 
-# ================= LEADERBOARD =================
+
 class Leaderboard(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_score = models.IntegerField(default=0)
@@ -75,7 +75,7 @@ class Leaderboard(models.Model):
         return f"{self.user} - {self.total_score}"
 
 
-# ================= CERTIFICATE =================
+
 class Certificate(models.Model):
     CERT_TYPES = (
         ('participation', 'Participation'),

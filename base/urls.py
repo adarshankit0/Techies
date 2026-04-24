@@ -22,7 +22,7 @@ urlpatterns = [
     
     path('join-room/<str:pk>/', views.joinRoom, name="join-room"),
 
-    # USER
+    
     path('update-user/', views.updateUser, name="update-user"),
 
     
